@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tradestore;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,10 +32,10 @@ public class Users extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        UserLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        LogoutLbl = new javax.swing.JLabel();
+        AssetsLbl = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -100,15 +101,30 @@ public class Users extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        jLabel6.setText("Users");
+        UserLbl.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        UserLbl.setText("Users");
+        UserLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UserLblMouseClicked(evt);
+            }
+        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tradestore/cashback.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tradestore/undo.png"))); // NOI18N
+        LogoutLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tradestore/undo.png"))); // NOI18N
+        LogoutLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogoutLblMouseClicked(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        jLabel7.setText("Assets");
+        AssetsLbl.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
+        AssetsLbl.setText("Assets");
+        AssetsLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AssetsLblMouseClicked(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 51, 51));
@@ -147,6 +163,11 @@ public class Users extends javax.swing.JFrame {
 
         SaveBtn.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         SaveBtn.setText("Save");
+        SaveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveBtnMouseClicked(evt);
+            }
+        });
         SaveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SaveBtnActionPerformed(evt);
@@ -155,6 +176,11 @@ public class Users extends javax.swing.JFrame {
 
         EditBtn.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         EditBtn.setText("Edit");
+        EditBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditBtnMouseClicked(evt);
+            }
+        });
         EditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditBtnActionPerformed(evt);
@@ -212,7 +238,7 @@ public class Users extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addComponent(LogoutLbl)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -232,7 +258,7 @@ public class Users extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
+                                                .addComponent(UserLbl)
                                                 .addGap(55, 55, 55)
                                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -249,7 +275,7 @@ public class Users extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel13)
                                             .addComponent(CreditTb, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel7)))
+                                    .addComponent(AssetsLbl)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23)))
@@ -264,8 +290,8 @@ public class Users extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addComponent(jLabel6))
+                            .addComponent(AssetsLbl, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(UserLbl))
                     .addComponent(jLabel12))
                 .addGap(4, 4, 4)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,7 +318,7 @@ public class Users extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jLabel4)
+                .addComponent(LogoutLbl)
                 .addGap(20, 20, 20))
         );
 
@@ -319,6 +345,35 @@ public class Users extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void SaveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveBtnMouseClicked
+        if(idTb.getText().isEmpty() || NameTb.getText().isEmpty() || PasswordTb.getText().isEmpty() || OrganisationalTb.getText().isEmpty() || CreditTb.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter Missing Information");
+        }
+    }//GEN-LAST:event_SaveBtnMouseClicked
+
+    private void EditBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBtnMouseClicked
+        if(idTb.getText().isEmpty() || NameTb.getText().isEmpty() || PasswordTb.getText().isEmpty() || OrganisationalTb.getText().isEmpty() || CreditTb.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this,"Please Enter Missing Information");
+        }
+    }//GEN-LAST:event_EditBtnMouseClicked
+
+    private void LogoutLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutLblMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_LogoutLblMouseClicked
+
+    private void UserLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserLblMouseClicked
+        new Users().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_UserLblMouseClicked
+
+    private void AssetsLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AssetsLblMouseClicked
+        new Assets().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AssetsLblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -356,14 +411,17 @@ public class Users extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AssetsLbl;
     private javax.swing.JTextField CreditTb;
     private javax.swing.JButton DeleteBtn;
     private javax.swing.JButton EditBtn;
+    private javax.swing.JLabel LogoutLbl;
     private javax.swing.JTextField NameTb;
     private javax.swing.JTextField OrganisationalTb;
     private javax.swing.JTextField PasswordTb;
     private javax.swing.JButton ResetBtn;
     private javax.swing.JButton SaveBtn;
+    private javax.swing.JLabel UserLbl;
     private javax.swing.JTextField idTb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -372,10 +430,7 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
