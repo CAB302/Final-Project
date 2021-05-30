@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Billing.java</file>
-            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Assets.java</file>
-            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Login.java</file>
-            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Users.java</file>
-            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Splash.java</file>
+            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Admins.java</file>
+            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Checkout.java</file>
+            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/TradeStore.java</file>
+            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/Sell_Billing.java</file>
+            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/exit.png</file>
+            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/create_org.java</file>
+            <file>file:/C:/Users/AH/Documents/NetBeansProjects/TradeStore/src/tradestore/ResetPass.java</file>
         </group>
     </open-files>
 </project-private>
