@@ -1,0 +1,6 @@
+- hash/unhash password
+- new login logic
+- buying a stock logic
+- putting everthing together
+- proper comments/ variables
+- 
