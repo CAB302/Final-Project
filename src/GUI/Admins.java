@@ -41,14 +41,18 @@ public class Admins extends javax.swing.JFrame {
             }
         });
         try{
-            ArrayList<String[]> dbData=Program.client.sendData("SELECT * FROM user_information WHERE account_type='admin'");
+            ArrayList<String[]> dbData=Program.client.sendData(Admin.getUsers());
+            int index = 1;
             for (String i[] : dbData) {
                 System.out.println(i[0]);
-                data_row[0] = ""+i[0];
-                data_row[1] = i[1];
-                data_row[2] = ""+i[2];
-                row_counter=Integer.parseInt(i[0]);
-                model.addRow(data_row);
+                if(i[2].equals("admin")){
+                    data_row[0] = index++;
+                    data_row[1] = i[0];
+                    data_row[2] = ""+i[2];
+                    row_counter = index;
+                    model.addRow(data_row);
+                }
+
             }
         }catch (Exception e){
             System.out.println("User init Error: "+e);

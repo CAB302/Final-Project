@@ -1,5 +1,8 @@
 package User;
 
+import java.security.MessageDigest;
+import javax.xml.bind.DatatypeConverter;
+
 public class Users {
 
     private static String username;
@@ -19,34 +22,19 @@ public class Users {
         this.type = type;
     }
 
+    public static String getHash(byte[] inputBytes, String algorithm){
+        String value = "";
+        try{
+            MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
+            messageDigest.update(inputBytes);
+            byte[] digestedBytes = messageDigest.digest();
+            value = DatatypeConverter.printHexBinary(digestedBytes).toLowerCase();
+        } catch (Exception e){
 
-    /***
-     * GetUserByUserNameAndPassword sdfsdf
-     * @param username
-     * @param password
-     * @return
-     */
-    /*
-    public String getUserByUserNameAndPassword(String username, String password) {
-
-        String statement = "SELECT * FROM Current trades WHERE offer = Buy;";
-
-        return statement;
-
-        try {
-            Statement statement = connection.createStatement();
-            String queryString = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password
-                    + "'";
-            // String queryString = "SELECT * FROM users WHERE username = '" + username + "'
-            // AND password = '" + password + "' AND account_type = '" + + "'";
-
-            // System.out.println("BACKEND query:\t\t" + queryString);
-            ResultSet results = statement.executeQuery(queryString);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        return value;
     }
-     */
+
 
     /***
      * ViewCurrentBuyOffers retrieves all active buy offers from database.
@@ -54,7 +42,7 @@ public class Users {
      */
     public static String viewCurrentBuyOffers(){
 
-         String statement = "SELECT * FROM current_trades";
+         String statement = "SELECT * FROM current_trades WHERE offer_type = 'BUY';";
 
          return statement;
      }
@@ -63,9 +51,9 @@ public class Users {
      * ViewCurrentSellOffers retrieves all active sell offers from database.
      * @return statement string to retrieve all active sell offers from database
      */
-    public String viewCurrentSellOffers(){
+    public static String viewCurrentSellOffers(){
 
-        String statement = "SELECT * FROM current_trades WHERE offer = Sell;";
+        String statement = "SELECT * FROM current_trades WHERE offer_type = 'SELL';";
 
         return statement;
     }
@@ -75,14 +63,17 @@ public class Users {
      * @param assetName name of asset
      * @return statement string to deletes an active trade from marketplace
      */
-    public String removeTrade(String assetName){
+    public static String removeTrade(String assetName){
 
-         String statement = "DELETE FROM current_trades WHERE asset =" + assetName + ";";
+         String statement = "DELETE FROM current_trades WHERE asset_name = '" + assetName + "';";
 
          return statement;
     }
-    public static String resetPass(String username, String pass){
-        String statement = "UPDATE user_information SET password='"+pass+"' WHERE account_type='user' AND username='"+username+"'";
+
+    public static String viewTradeHistory(String assetName){
+
+        String statement = "SELECT * FROM trade_history WHERE asset_name = '"+ assetName + "';";
+
         return statement;
     }
 }

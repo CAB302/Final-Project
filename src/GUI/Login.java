@@ -6,9 +6,10 @@
 package GUI;
 
 import Trade_Program.Program;
+import User.Admin;
+
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -144,7 +145,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("Trading Software");
 
         jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "IT Admin" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Admin" }));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel8.setText("X");
@@ -248,18 +249,21 @@ public class Login extends javax.swing.JFrame {
             ArrayList<String[]> databaseData;
 
             try{
-                databaseData=Program.client.sendData("SELECT * from user_information WHERE username='"+UserTb.getText()+"' AND account_type='"+text+"'");
-                System.out.println();
+                String user = jComboBox1.getSelectedItem().toString();
+                System.out.println(user);
+                String hashedLoginPassword = User.Users.getHash(PassTb.getText().getBytes(), "SHA-1");
+                databaseData=Program.client.sendData(Admin.getUsers());
+                boolean x = true;
                 for (String i[] : databaseData) {
                     
-                    if(i[1].equalsIgnoreCase(UserTb.getText()) && i[2].equals(PassTb.getText())){
+                    if(i[0].equalsIgnoreCase(UserTb.getText()) && i[1].equals(PassTb.getText()) && user.equalsIgnoreCase(i[2])){ //change to hashed login password
                         showUserPanel();
-                    }
-                    else{
-                        showNoAccess();
+                        x = false;
                     }
                 }
-
+                if(x){
+                    showNoAccess();
+                }
             }
             catch (Exception e){
                 System.out.println(e);
@@ -275,7 +279,7 @@ public class Login extends javax.swing.JFrame {
     private void showUserPanel(){
         String text=jComboBox1.getSelectedItem().toString();
         if(text.equalsIgnoreCase("user")){
-            new Billing().setVisible(true);
+            new BillingBuy().setVisible(true);
         }else{
             new Users().setVisible(true);
         }

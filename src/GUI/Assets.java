@@ -7,7 +7,6 @@ package GUI;
 
 import Trade_Program.Program;
 import User.Admin;
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
@@ -40,11 +39,12 @@ public class Assets extends javax.swing.JFrame {
             }
         });
         try{
-            ArrayList<String[]> dbData=Program.client.sendData("SELECT * FROM asset_type");
+            ArrayList<String[]> dbData=Program.client.sendData(Admin.getAssetsTypes());
+            int index = 1;
             for (String i[] : dbData) {
-                data_row[0] = i[0];
-                data_row[1] = i[1];
-                row_counter=Integer.parseInt(i[0]);
+                data_row[0] = index++;
+                data_row[1] = i[0];
+                row_counter = index;
                 model.addRow(data_row);
             }
         }catch (Exception e){

@@ -41,13 +41,15 @@ public class create_org extends javax.swing.JFrame {
             }
         });
         try{
-            ArrayList<String[]> dbData=Program.client.sendData("SELECT * FROM organisational_unit_information");
+            ArrayList<String[]> dbData=Program.client.sendData(Admin.getOrgs());
+            int index = 1;
             for (String i[] : dbData) {
-                System.out.println(i[0]);
-                data_row[0] = ""+i[0];
-                data_row[1] = i[1];
-                data_row[2] = i[2];
-                row_counter=Integer.parseInt(i[0]);
+                data_row[0] = index++;
+                data_row[1] = i[0];
+                data_row[2] = i[1];
+                //data_row[3] = i[2];
+                //data_row[4] = i[3];
+                row_counter = index;
                 model.addRow(data_row);
             }
         }catch (Exception e){
@@ -339,6 +341,7 @@ public class create_org extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Please Enter Missing Information");
         }
         else{
+
             JOptionPane.showMessageDialog(this,"Organization Entered Successfully");
             row_counter++;
             data_row[0] = row_counter;
@@ -350,7 +353,7 @@ public class create_org extends javax.swing.JFrame {
 
         }
         try{
-            Program.client.sendData(Admin.createOrg(AssetTb.getText(), AmountTb.getText()));
+            Program.client.sendData(Admin.createOrg(AssetTb.getText(), AmountTb.getText(), "asset", "9"));
         }catch (Exception e){
 
         }

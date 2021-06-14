@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -44,15 +43,16 @@ public class Users extends javax.swing.JFrame {
             }
         });
         try{
-            ArrayList<String[]> dbData=Program.client.sendData("SELECT * FROM user_information WHERE account_type='user'");
+            int index = 1;
+            ArrayList<String[]> dbData=Program.client.sendData(Admin.getUsers());
             for (String i[] : dbData) {
                 System.out.println(i[0]);
-                data_row[0] = i[0];
-                data_row[1] = i[1];
-                data_row[2] = i[2];
-                data_row[3] = i[3];
-                data_row[4] = i[4];
-                row_counter=Integer.parseInt(i[0]);
+                data_row[0] = index++;
+                data_row[1] = i[0];
+                data_row[2] = i[1];
+                data_row[3] = i[2];
+                data_row[4] = i[3];
+                row_counter= index;
                 model.addRow(data_row);
             }
         }catch (Exception e){

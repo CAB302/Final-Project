@@ -2,7 +2,7 @@ package User;
 
 public class Admin extends Users {
 
-    Admin(String username, String password, String type) {
+    public Admin(String username, String password, String type) {
         super(username, password, type);
     }
 
@@ -10,13 +10,13 @@ public class Admin extends Users {
      * CreateOrg creates a new organisation unit in database.
      * @param orgName   name of organisation
      * @param credits   number of credits the organisation has
-//     * @param assetName   name of asset
-//     * @param numOfAssets   number of asset
+     * @param assetName   name of asset
+     * @param numOfAssets   number of asset
      * @return statement string to creates a new organisation unit in database
      */
-    public static String createOrg(String orgName, String  credits) {
+    public static String createOrg(String orgName, String  credits, String assetName, String  numOfAssets) {
 
-        String statement = "INSERT INTO organisational_unit_information (organisational_unit_name, credits) VALUES ('" + orgName + "', '" +  credits + "');";
+        String statement = "INSERT INTO organisational_unit_information (organisational_unit_name, credits, assets, quantity) VALUES ('" + orgName + "', '" +  credits + "', '" + assetName + "', '" + numOfAssets + "');";
 
         return statement;
     }
@@ -30,7 +30,8 @@ public class Admin extends Users {
      */
     public static String createUserMember(String username, String password, String organisation) {
 
-        String statement = "INSERT INTO user_information (username, password, account_type, organisational_unit) VALUES ('" + username + "', '" + password + "', 'user', '" + organisation + "');";
+        String hashPassword = getHash(password.getBytes(), "SHA-1");
+        String statement = "INSERT INTO user_information (username, password, account_type, organisational_unit) VALUES ('" + username + "', '" + hashPassword + "', 'member', '" + organisation + "');";
 
         return statement;
     }
@@ -43,7 +44,8 @@ public class Admin extends Users {
      */
     public static String createUserAdmin(String username, String password) {
 
-        String statement = "INSERT INTO user_information (username, password, account_type) VALUES ('" + username + "', '" + password + "', 'admin');";
+        String hashPassword = getHash(password.getBytes(), "SHA-1");
+        String statement = "INSERT INTO user_information (username, password, account_type) VALUES ('" + username + "', '" + hashPassword + "', 'admin');";
 
         return statement;
     }
@@ -55,7 +57,7 @@ public class Admin extends Users {
      */
     public static String createAssetType(String assetType) {
 
-        String statement = "INSERT INTO asset_type (asset_names) VALUES ('" + assetType + "');";
+        String statement = "INSERT INTO asset_types (asset_names) VALUES ('" + assetType + "');";
 
         return statement;
     }
@@ -66,9 +68,9 @@ public class Admin extends Users {
      * @param numOfCredits updated number of credits
      * @return statement string to update the number of credits an organisation has in database
      */
-    public String editOrgCredits(String orgName, String numOfCredits) {
+    public static String editOrgCredits(String orgName, String numOfCredits) {
 
-        String statement = "UPDATE organisational_unit_information SET credits = ('" + numOfCredits + "') WHERE name = ('" + orgName +"');";
+        String statement = "UPDATE organisational_unit_information SET credits = '" + numOfCredits + "' WHERE organisational_unit_name = '" + orgName +"';";
 
         return statement;
     }
@@ -80,12 +82,46 @@ public class Admin extends Users {
      * @param numOfAssets   updated number of asset
      * @return statement string to update the amount of an asset an organisation has in database
      */
-    public String editOrgAssets(String orgName, String asset, int numOfAssets) {
+    public static String editOrgAssets(String orgName, String asset, String numOfAssets) {
 
-        String statement = "UPDATE organisational_unit_information SET quantity = " + Integer.toString(numOfAssets) + " WHERE name = '" + orgName + "' AND assets = '" + asset + "';";
+        String statement = "UPDATE organisational_unit_information SET quantity = '" + numOfAssets + "' WHERE organisational_unit_name = '" + orgName + "' AND assets = '" + asset + "';";
 
         return statement;
     }
+
+    /***
+     *
+     * @return
+     */
+    public static String getOrgs() {
+
+        String statement = "SELECT * from organisational_unit_information;";
+
+        return statement;
+    }
+
+    /***
+     *
+     * @return
+     */
+    public static String getUsers() {
+
+        String statement = "SELECT * from user_information;";
+
+        return statement;
+    }
+
+    /***
+     *
+     * @return
+     */
+    public static String getAssetsTypes() {
+
+        String statement = "SELECT * from asset_types;";
+
+        return statement;
+    }
+
     public static String deleteUser(int id){
         String statement = "DELETE FROM user_information WHERE id="+id+"";
 
