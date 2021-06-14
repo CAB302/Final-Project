@@ -9,6 +9,10 @@ public class Users {
     private static String password;
     private static String type;
 
+    public static String resetPass(String text, String text0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /***
      * Assigns new user a unique username and password.
      * @param username  users unique username
